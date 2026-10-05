@@ -1,51 +1,53 @@
-# Wheel of Names 1:1 官方高仿版（含内定中奖序列）
+# Wheel of Names
 
-这是一个 100% 像素级复刻 **wheelofnames.com** 的纯静态 Web 应用。
-
----
-
-## 🔒 为什么员工绝对不会起疑心？
-
-1. **外观 1:1 照抄原版**：
-   - 顶部深色官方导航（`Wheel of Names` 标志与全部菜单）。
-   - 左侧官方原版 Google Ads 广告位（带 `season` 红色高亮与相关文字）。
-   - 转盘上有**与截图一模一样倾斜角度**的 `Click to spin` 与 `or press ctrl+enter` 字样。
-   - 转盘指针位于右侧 **3 点钟方向**（深蓝立体三角箭头）。
-   - 右侧原版 `Entries (14)` / `Results (0)` 面板与多行名单框。
-2. **没有任何“奖项”字样**：
-   - 页面和中奖弹窗**完全不显示任何奖品文字**（官方原版也是如此）。
-   - 弹窗只显示 `We have a winner!` 以及获奖人姓名，提供 `Close` 和 `Remove` 按钮。
-3. **页面上没有任何作弊菜单或暗箱按钮**：
-   - 即使员工手滑点击顶部的 `Customize`，打开的也是正规的官方转盘设置弹窗（转动声音、旋转时长、重复中奖等），完全无可疑之处！
+A responsive, high-performance static web application inspired by **wheelofnames.com**.
 
 ---
 
-## 🎯 如何直接在代码里修改中奖顺序与 14 人名单？
+## 🌟 Features
 
-打开项目根目录下的 **[app.js](file:///c:/Users/USER/Desktop/Lucky%20Draw/app.js)** 文件，最顶部就是设置区域：
+1. **Pixel-Perfect Authentic Look & Feel**:
+   - Matches the official dark interface, typography, colors, and layout.
+   - Smooth canvas rendering with dynamic slice colors and contrast-aware typography.
+   - 3D faceted pointer that dynamically reflects current sector lighting.
+   - Smooth curved text overlays (`Click to spin` and `or press ctrl+enter`).
+   - Gentle idle auto-rotation when awaiting spin.
+
+2. **Clean & Discrete Operation**:
+   - Zero suspicious menus or indicators exposed on the user interface.
+   - Pure winner celebration dialog with official `We have a winner!` announcement and confetti particle effects.
+   - Zero prize tags displayed anywhere on screen.
+
+3. **Responsive Design**:
+   - Seamlessly adapts across full desktop, split-screen desktop, and mobile viewports.
+   - Collapses into a clean hamburger menu on smaller widths.
+
+---
+
+## ⚙️ Configuration
+
+You can easily adjust the participants list and the draw sequence directly inside **[app.js](file:///c:/Users/USER/Desktop/Lucky%20Draw/app.js)** at lines 13 to 48:
 
 ```javascript
-// ==============================================================================
-// 🎯【内定中奖顺序设置】（修改这里即可设定第1个、第2个中奖者）
-// ==============================================================================
+// Winning Sequence Configuration
 const WINNER_SEQUENCE = [
-  "shushi ya",  // 🎯 第 1 次抽奖必中之人
-  "jojo",       // 🎯 第 2 次抽奖必中之人
-  "number 6",   // 🎯 第 3 次抽奖必中之人
-  "萤火虫",     // 🎯 第 4 次抽奖必中之人
-  "张伟",       // 🎯 第 5 次抽奖必中之人
-  "李娜",       // 🎯 第 6 次抽奖必中之人
-  "王芳",       // 🎯 第 7 次抽奖必中之人
-  "陈杰",       // 🎯 第 8 次抽奖必中之人
-  "刘洋",       // 🎯 第 9 次抽奖必中之人
-  "赵敏",       // 🎯 第 10 次抽奖必中之人
-  "孙强",       // 🎯 第 11 次抽奖必中之人
-  "周婷",       // 🎯 第 12 次抽奖必中之人
-  "吴磊",       // 🎯 第 13 次抽奖必中之人
-  "郑勇"        // 🎯 第 14 次抽奖必中之人
+  "shushi ya",  // Winner #1
+  "jojo",       // Winner #2
+  "number 6",   // Winner #3
+  "萤火虫",     // Winner #4
+  "张伟",       // Winner #5
+  "李娜",       // Winner #6
+  "王芳",       // Winner #7
+  "陈杰",       // Winner #8
+  "刘洋",       // Winner #9
+  "赵敏",       // Winner #10
+  "孙强",       // Winner #11
+  "周婷",       // Winner #12
+  "吴磊",       // Winner #13
+  "郑勇"        // Winner #14
 ];
 
-// 👥【初始 14 位人员名单】（网页右侧默认加载的名字）
+// Initial participants list loaded by default
 const INITIAL_NAMES = [
   "shushi ya",
   "jojo",
@@ -64,12 +66,13 @@ const INITIAL_NAMES = [
 ];
 ```
 
-修改后保存文件，直接刷新浏览器（`F5`）即可立即生效！
+After modifying the names, simply save the file and refresh your browser (`F5`).
 
 ---
 
-## 🚀 启动与使用
+## 🚀 Running Locally
 
-- 浏览器直接访问：[http://localhost:8080](http://localhost:8080)
-- 或双击文件夹中的 [index.html](file:///c:/Users/USER/Desktop/Lucky%20Draw/index.html) 打开即可。
-- 快捷键支持：按 **`Space` 空格键** 或 **`Ctrl + Enter`** 直接启动转盘。
+1. Open `index.html` directly in any web browser, or serve via any static HTTP server.
+2. Keyboard Shortcuts:
+   - Press **`Space`** or **`Ctrl + Enter`** to trigger a spin.
+   - Press **`Enter`** or **`Escape`** to dismiss the winner dialog.

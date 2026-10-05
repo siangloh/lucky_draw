@@ -1,35 +1,33 @@
 /**
  * ==============================================================================
- * 🎯【内定中奖顺序设置】（修改这里即可设定第1个、第2个中奖者）
+ * Participants and Winning Sequence Configuration
  *
- * 页面上没有任何外露的“暗箱/作弊”菜单，他人完全看不出任何破绽！
- * 按照数组顺序依次中奖：
- * 第1次抽奖 -> 命中 WINNER_SEQUENCE[0]
- * 第2次抽奖 -> 命中 WINNER_SEQUENCE[1]
- * 第3次抽奖 -> 命中 WINNER_SEQUENCE[2]
- * ... 以此类推！
+ * Change the entries below to configure the participants and the draw order:
+ * Draw #1 -> WINNER_SEQUENCE[0]
+ * Draw #2 -> WINNER_SEQUENCE[1]
+ * Draw #3 -> WINNER_SEQUENCE[2]
+ * ... and so on.
  * ==============================================================================
  */
 const WINNER_SEQUENCE = [
-  "shushi ya",  // 🎯 第 1 次抽奖必中之人
-  "jojo",       // 🎯 第 2 次抽奖必中之人
-  "number 6",   // 🎯 第 3 次抽奖必中之人
-  "萤火虫",     // 🎯 第 4 次抽奖必中之人
-  "张伟",       // 🎯 第 5 次抽奖必中之人
-  "李娜",       // 🎯 第 6 次抽奖必中之人
-  "王芳",       // 🎯 第 7 次抽奖必中之人
-  "陈杰",       // 🎯 第 8 次抽奖必中之人
-  "刘洋",       // 🎯 第 9 次抽奖必中之人
-  "赵敏",       // 🎯 第 10 次抽奖必中之人
-  "孙强",       // 🎯 第 11 次抽奖必中之人
-  "周婷",       // 🎯 第 12 次抽奖必中之人
-  "吴磊",       // 🎯 第 13 次抽奖必中之人
-  "郑勇"        // 🎯 第 14 次抽奖必中之人
+  "shushi ya",  // Winner #1
+  "jojo",       // Winner #2
+  "number 6",   // Winner #3
+  "萤火虫",     // Winner #4
+  "张伟",       // Winner #5
+  "李娜",       // Winner #6
+  "王芳",       // Winner #7
+  "陈杰",       // Winner #8
+  "刘洋",       // Winner #9
+  "赵敏",       // Winner #10
+  "孙强",       // Winner #11
+  "周婷",       // Winner #12
+  "吴磊",       // Winner #13
+  "郑勇"        // Winner #14
 ];
 
 /**
- * 👥【初始 14 位人员名单】
- * 页面右侧文本框默认加载这些名字，也可以在网页上直接编辑或粘贴替换
+ * Initial participants list loaded by default in the right sidebar.
  */
 const INITIAL_NAMES = [
   "shushi ya",
@@ -49,7 +47,7 @@ const INITIAL_NAMES = [
 ];
 
 // ==============================================================================
-// ⚙️ Wheel of Names 1:1 引擎逻辑
+// Wheel of Names Engine Logic
 // ==============================================================================
 
 (function () {
@@ -481,7 +479,7 @@ const INITIAL_NAMES = [
 
       // Tool: Sort
       document.getElementById('btn-tool-sort').addEventListener('click', () => {
-        this.names.sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+        this.names.sort((a, b) => a.localeCompare(b));
         this.render();
         this.entriesTextarea.value = this.names.join('\n');
       });
