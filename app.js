@@ -2,16 +2,15 @@
  * ==============================================================================
  * Designated Winners Configuration
  *
- * Only specific rounds are fixed here.
- * Any round NOT specified here will be completely random ("随缘").
- *
- * Round 11 (11th) -> EZZAT
- * Round 14 (14th) -> DEVA
+ * 倒序抽奖规则（从第 14 奖抽到第 1 奖）：
+ * - 第 1 次抽（第 14 奖）：DEVA
+ * - 第 4 次抽（第 11 奖）：EZZAT
+ * - 其他抽奖（第 13 奖、第 12 奖、第 10 奖至第 1 奖）：完全随缘（实时随机）
  * ==============================================================================
  */
 const DESIGNATED_WINNERS = {
-  11: "EZZAT",  // 11th Draw (第 11 轮固定为 EZZAT)
-  14: "DEVA"    // 14th Draw (第 14 轮固定为 DEVA)
+  1: "DEVA",   // 第 1 抽 -> 对应第 14 奖 (14th Prize)
+  4: "EZZAT"   // 第 4 抽 -> 对应第 11 奖 (11th Prize)
 };
 
 /**
