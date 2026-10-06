@@ -10,40 +10,40 @@
  * ==============================================================================
  */
 const WINNER_SEQUENCE = [
-  "shushi ya",  // Winner #1
-  "jojo",       // Winner #2
-  "number 6",   // Winner #3
-  "萤火虫",     // Winner #4
-  "张伟",       // Winner #5
-  "李娜",       // Winner #6
-  "王芳",       // Winner #7
-  "陈杰",       // Winner #8
-  "刘洋",       // Winner #9
-  "赵敏",       // Winner #10
-  "孙强",       // Winner #11
-  "周婷",       // Winner #12
-  "吴磊",       // Winner #13
-  "郑勇"        // Winner #14
+  "SHOHAN",         // Winner #1
+  "ALI",            // Winner #2
+  "TAN JIN CHUN",   // Winner #3
+  "HANIZA",         // Winner #4
+  "FAYSAL",         // Winner #5
+  "YOONG YING KIE", // Winner #6
+  "RUBEL",          // Winner #7
+  "ADHA",           // Winner #8
+  "SHAMIM",         // Winner #9
+  "WIN NAUNG",      // Winner #10
+  "EZZAT",          // Winner #11 (11th)
+  "SHALINI",        // Winner #12
+  "YEASUF",         // Winner #13
+  "DEVA"            // Winner #14 (14th)
 ];
 
 /**
  * Initial participants list loaded by default in the right sidebar.
  */
 const INITIAL_NAMES = [
-  "shushi ya",
-  "jojo",
-  "number 6",
-  "萤火虫",
-  "张伟",
-  "李娜",
-  "王芳",
-  "陈杰",
-  "刘洋",
-  "赵敏",
-  "孙强",
-  "周婷",
-  "吴磊",
-  "郑勇"
+  "ADHA",
+  "ALI",
+  "DEVA",
+  "EZZAT",
+  "FAYSAL",
+  "HANIZA",
+  "SHOHAN",
+  "RUBEL",
+  "SHALINI",
+  "SHAMIM",
+  "TAN JIN CHUN",
+  "WIN NAUNG",
+  "YEASUF",
+  "YOONG YING KIE"
 ];
 
 // ==============================================================================
@@ -333,9 +333,12 @@ const INITIAL_NAMES = [
       let targetWinner = null;
       if (this.spinIndex < WINNER_SEQUENCE.length) {
         const designatedName = WINNER_SEQUENCE[this.spinIndex];
-        // Check if designated name is currently on the wheel
-        if (this.names.includes(designatedName)) {
-          targetWinner = designatedName;
+        // Check if designated name is currently on the wheel (case-insensitive & trim-safe)
+        const matched = this.names.find(
+          n => n.trim().toLowerCase() === designatedName.trim().toLowerCase()
+        );
+        if (matched) {
+          targetWinner = matched;
         }
       }
 
@@ -443,7 +446,8 @@ const INITIAL_NAMES = [
 
     advanceRound(removeWinner = false) {
       if (removeWinner && this.lastWinner) {
-        this.names = this.names.filter(n => n !== this.lastWinner);
+        const target = this.lastWinner.trim().toLowerCase();
+        this.names = this.names.filter(n => n.trim().toLowerCase() !== target);
         this.entriesTextarea.value = this.names.join('\n');
         this.render();
       }
