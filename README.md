@@ -26,43 +26,31 @@ A responsive, high-performance static web application inspired by **wheelofnames
 
 ## ⚙️ Configuration
 
-You can easily adjust the participants list and the draw sequence directly inside **[app.js](file:///c:/Users/USER/Desktop/Lucky%20Draw/app.js)** at lines 13 to 48:
+You can easily adjust the participants list and designated winners directly inside **[app.js](file:///c:/Users/USER/Desktop/Lucky%20Draw/app.js)**:
 
 ```javascript
-// Winning Sequence Configuration
-const WINNER_SEQUENCE = [
-  "shushi ya",  // Winner #1
-  "jojo",       // Winner #2
-  "number 6",   // Winner #3
-  "萤火虫",     // Winner #4
-  "张伟",       // Winner #5
-  "李娜",       // Winner #6
-  "王芳",       // Winner #7
-  "陈杰",       // Winner #8
-  "刘洋",       // Winner #9
-  "赵敏",       // Winner #10
-  "孙强",       // Winner #11
-  "周婷",       // Winner #12
-  "吴磊",       // Winner #13
-  "郑勇"        // Winner #14
-];
+// Designated Winners Configuration (Only specify rounds you want to lock; others are completely random/随缘)
+const DESIGNATED_WINNERS = {
+  11: "EZZAT",  // 11th Draw
+  14: "DEVA"    // 14th Draw
+};
 
 // Initial participants list loaded by default
 const INITIAL_NAMES = [
-  "shushi ya",
-  "jojo",
-  "number 6",
-  "萤火虫",
-  "张伟",
-  "李娜",
-  "王芳",
-  "陈杰",
-  "刘洋",
-  "赵敏",
-  "孙强",
-  "周婷",
-  "吴磊",
-  "郑勇"
+  "ADHA",
+  "ALI",
+  "DEVA",
+  "EZZAT",
+  "FAYSAL",
+  "HANIZA",
+  "SHOHAN",
+  "RUBEL",
+  "SHALINI",
+  "SHAMIM",
+  "TAN JIN CHUN",
+  "WIN NAUNG",
+  "YEASUF",
+  "YOONG YING KIE"
 ];
 ```
 

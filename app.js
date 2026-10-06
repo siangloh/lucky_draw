@@ -1,30 +1,18 @@
 /**
  * ==============================================================================
- * Participants and Winning Sequence Configuration
+ * Designated Winners Configuration
  *
- * Change the entries below to configure the participants and the draw order:
- * Draw #1 -> WINNER_SEQUENCE[0]
- * Draw #2 -> WINNER_SEQUENCE[1]
- * Draw #3 -> WINNER_SEQUENCE[2]
- * ... and so on.
+ * Only specific rounds are fixed here.
+ * Any round NOT specified here will be completely random ("随缘").
+ *
+ * Round 11 (11th) -> EZZAT
+ * Round 14 (14th) -> DEVA
  * ==============================================================================
  */
-const WINNER_SEQUENCE = [
-  "SHOHAN",         // Winner #1
-  "ALI",            // Winner #2
-  "TAN JIN CHUN",   // Winner #3
-  "HANIZA",         // Winner #4
-  "FAYSAL",         // Winner #5
-  "YOONG YING KIE", // Winner #6
-  "RUBEL",          // Winner #7
-  "ADHA",           // Winner #8
-  "SHAMIM",         // Winner #9
-  "WIN NAUNG",      // Winner #10
-  "EZZAT",          // Winner #11 (11th)
-  "SHALINI",        // Winner #12
-  "YEASUF",         // Winner #13
-  "DEVA"            // Winner #14 (14th)
-];
+const DESIGNATED_WINNERS = {
+  11: "EZZAT",  // 11th Draw (第 11 轮固定为 EZZAT)
+  14: "DEVA"    // 14th Draw (第 14 轮固定为 DEVA)
+};
 
 /**
  * Initial participants list loaded by default in the right sidebar.
@@ -329,11 +317,13 @@ const INITIAL_NAMES = [
       if (this.promptTop) this.promptTop.style.opacity = '0';
       if (this.promptBottom) this.promptBottom.style.opacity = '0';
 
-      // 1. Determine Winning Target from WINNER_SEQUENCE
+      // 1. Determine Winning Target
+      const currentRound = this.spinIndex + 1; // 1-based round index
       let targetWinner = null;
-      if (this.spinIndex < WINNER_SEQUENCE.length) {
-        const designatedName = WINNER_SEQUENCE[this.spinIndex];
-        // Check if designated name is currently on the wheel (case-insensitive & trim-safe)
+
+      // Check if current round has a designated winner (e.g., Round 11 or 14)
+      const designatedName = DESIGNATED_WINNERS[currentRound];
+      if (designatedName) {
         const matched = this.names.find(
           n => n.trim().toLowerCase() === designatedName.trim().toLowerCase()
         );
@@ -342,10 +332,23 @@ const INITIAL_NAMES = [
         }
       }
 
-      // Fallback if not configured or name was removed
+      // If this round is not designated (or designated name not on wheel):
+      // Pick completely randomly ("随缘")!
       if (!targetWinner) {
-        const randIndex = Math.floor(Math.random() * this.names.length);
-        targetWinner = this.names[randIndex];
+        // Collect winners reserved for future rounds so they are not drawn prematurely
+        const reservedFutureWinners = Object.entries(DESIGNATED_WINNERS)
+          .filter(([round]) => parseInt(round, 10) > currentRound)
+          .map(([, name]) => name.trim().toLowerCase());
+
+        // Pool of available participants excluding upcoming reserved winners
+        const eligibleCandidates = this.names.filter(
+          n => !reservedFutureWinners.includes(n.trim().toLowerCase())
+        );
+
+        // Randomly select from eligible pool (fallback to all remaining names if needed)
+        const pool = eligibleCandidates.length > 0 ? eligibleCandidates : this.names;
+        const randIndex = Math.floor(Math.random() * pool.length);
+        targetWinner = pool[randIndex];
       }
 
       // 2. Exact Angle Calculation for Pointer at 3 o'clock (0 radians)
@@ -513,6 +516,18 @@ const INITIAL_NAMES = [
         const sb = document.getElementById('won-right-sidebar');
         sb.classList.toggle('collapsed');
       });
+
+      // New Wheel Reset
+      const btnNew = document.getElementById('btn-nav-new');
+      if (btnNew) {
+        btnNew.addEventListener('click', () => {
+          this.names = [...INITIAL_NAMES];
+          this.spinIndex = 0;
+          this.results = [];
+          this.updateUI();
+          this.render();
+        });
+      }
 
       // Winner Modal Actions
       document.getElementById('btn-modal-close').addEventListener('click', () => {
