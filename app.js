@@ -251,9 +251,18 @@ const INITIAL_NAMES = [
         const textColor = this.getSliceTextColor(color);
         ctx.fillStyle = textColor;
 
-        // Auto font size (Enlarged and bold for high visibility)
-        const fontSize = Math.min(36, Math.max(18, Math.floor(460 / count)));
+        // Auto font size with intelligent width clamping so long names never hide under the center hub
+        const baseFontSize = Math.min(30, Math.max(16, Math.floor(400 / count)));
+        let fontSize = baseFontSize;
         ctx.font = `900 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+
+        // Available horizontal length along the slice: from rim (radius - 18) to clear center hub (> 48px from center)
+        const maxTextWidth = radius - 66;
+        const textWidth = ctx.measureText(this.names[i]).width;
+        if (textWidth > maxTextWidth) {
+          fontSize = Math.max(12, Math.floor(fontSize * (maxTextWidth / textWidth)));
+          ctx.font = `900 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+        }
 
         if (textColor === '#ffffff') {
           ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
@@ -262,7 +271,7 @@ const INITIAL_NAMES = [
           ctx.shadowBlur = 0;
         }
 
-        ctx.fillText(this.names[i], radius - 20, 0);
+        ctx.fillText(this.names[i], radius - 18, 0);
         ctx.restore();
       }
 
