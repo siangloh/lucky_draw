@@ -2,15 +2,15 @@
  * ==============================================================================
  * Designated Winners Configuration
  *
- * 倒序抽奖规则（从第 14 奖抽到第 1 奖）：
- * - 第 1 次抽（第 14 奖）：DEVA
- * - 第 4 次抽（第 11 奖）：EZZAT
- * - 其他抽奖（第 13 奖、第 12 奖、第 10 奖至第 1 奖）：完全随缘（实时随机）
+ * Reverse Prize Order (Drawing from 14th Prize down to 1st Prize):
+ * - Draw #1 (14th Prize): DEVA
+ * - Draw #4 (11th Prize): EZZAT
+ * - All other draws (13th, 12th, 10th down to 1st): completely random.
  * ==============================================================================
  */
 const DESIGNATED_WINNERS = {
-  1: "DEVA",   // 第 1 抽 -> 对应第 14 奖 (14th Prize)
-  4: "EZZAT"   // 第 4 抽 -> 对应第 11 奖 (11th Prize)
+  1: "DEVA",   // Draw #1 -> corresponds to 14th Prize
+  4: "EZZAT"   // Draw #4 -> corresponds to 11th Prize
 };
 
 /**
@@ -332,7 +332,7 @@ const INITIAL_NAMES = [
       }
 
       // If this round is not designated (or designated name not on wheel):
-      // Pick completely randomly ("随缘")!
+      // Pick completely at random!
       if (!targetWinner) {
         // Collect winners reserved for future rounds so they are not drawn prematurely
         const reservedFutureWinners = Object.entries(DESIGNATED_WINNERS)

@@ -29,10 +29,10 @@ A responsive, high-performance static web application inspired by **wheelofnames
 You can easily adjust the participants list and designated winners directly inside **[app.js](file:///c:/Users/USER/Desktop/Lucky%20Draw/app.js)**:
 
 ```javascript
-// Designated Winners Configuration (Only specify rounds you want to lock; others are completely random/随缘)
+// Designated Winners Configuration (Only specify rounds you want to lock; others are completely random)
 const DESIGNATED_WINNERS = {
-  11: "EZZAT",  // 11th Draw
-  14: "DEVA"    // 14th Draw
+  1: "DEVA",   // Draw #1 -> 14th Prize
+  4: "EZZAT"   // Draw #4 -> 11th Prize
 };
 
 // Initial participants list loaded by default
